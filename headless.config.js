@@ -1,5 +1,5 @@
 /**
- * UHeadless Config
+ * Headless Config
  *
  * @type {import('@10up/headless-core').HeadlessConfig}
  */
