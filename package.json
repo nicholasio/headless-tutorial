@@ -11,8 +11,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@10up/headless-core": "^0.4.0",
-    "@10up/headless-next": "^0.4.1",
+    "@10up/headless-core": "^0.4.4",
+    "@10up/headless-next": "^0.4.3",
     "@linaria/babel-preset": "^4.1.2",
     "@linaria/core": "^4.1.1",
     "@linaria/react": "^4.1.2",
