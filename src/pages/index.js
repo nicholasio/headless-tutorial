@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 import { PageContent } from '../components/PageContent';
 import { indexParams } from '../params';
+import { resolveBatch } from '../utils/promises';
 
 const RecentPost = ({ post }) => {
 	return (
@@ -72,14 +73,26 @@ export async function getStaticProps(context) {
 	}
 
 	try {
-		const hookData = await fetchHookData(usePost.fetcher(), context, {
-			params: {
-				...indexParams,
-				slug,
+		const hookData = await resolveBatch([
+			{
+				func: fetchHookData(usePost.fetcher(), context, {
+					params: {
+						...indexParams,
+						slug,
+					},
+				}),
 			},
-		});
+			{
+				func: fetchHookData(usePosts.fetcher(), context, {
+					params: {
+						per_page: 5,
+						_fields: ['title', 'id'],
+					},
+				}),
+			},
+		]);
 
-		return addHookData([hookData, appSettings], {
+		return addHookData([...hookData, appSettings], {
 			props: { homePageSlug: slug },
 			revalidate: 5 * 60,
 		});
