@@ -88,6 +88,9 @@ export async function getStaticProps(context) {
 						per_page: 5,
 						_fields: ['title', 'id'],
 					},
+					fetchStrategyOptions: {
+						throwIfNotFound: false,
+					},
 				}),
 			},
 		]);
